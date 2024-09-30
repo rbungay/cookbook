@@ -8,6 +8,7 @@ import morgan from "morgan";
 import session from "express-session";
 
 import authController from "./controllers/auth.js";
+import mainController from "./controllers/main.js";
 
 const port = process.env.PORT ? process.env.PORT : "3000";
 
@@ -43,7 +44,7 @@ app.get("/vip-lounge", (req, res) => {
 });
 
 app.use("/auth", authController);
-// app.use("/main", mainController);
+app.use("/", mainController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
