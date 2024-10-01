@@ -9,7 +9,10 @@ import session from "express-session";
 
 import authController from "./controllers/auth.js";
 import mainController from "./controllers/main.js";
-import recipeController from "./controllers/recipe.js";
+import recipeController from "./controllers/recipes.js";
+import ingredientsController from "./controllers/ingredients.js";
+import isSignedIn from "./middleware/is-signed-in.js";
+import passUserToView from "./middleware/pass-user-to-view.js";
 
 const port = process.env.PORT ? process.env.PORT : "3000";
 
@@ -44,9 +47,12 @@ app.get("/vip-lounge", (req, res) => {
   }
 });
 
+app.use(passUserToView);
 app.use("/auth", authController);
+app.use(isSignedIn);
 app.use("/", mainController);
 app.use("/", recipeController);
+app.use("/", ingredientsController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

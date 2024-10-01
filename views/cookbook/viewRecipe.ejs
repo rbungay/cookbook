@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Recipes</title>
+  </head>
+  <body>
+    <h1>My Recipes</h1>
+    <ul>
+      <% recipes.forEach(recipe => { %>
+      <li>
+        <h2><%= recipe.name %></h2>
+        <p><%= recipe.instructions %></p>
+        <h3>Ingredients:</h3>
+        <ul>
+          <% recipe.ingredients.forEach(ingredient => { %>
+          <li><%= ingredient.name %></li>
+          <% }) %>
+        </ul>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

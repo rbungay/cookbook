@@ -31,4 +31,16 @@ router.post("/myCookBook/add-recipe", async (req, res) => {
   }
 });
 
+router.get("/myCookBook/my-recipes", async (req, res) => {
+  try {
+    console.log(req.session.user._id);
+    const currentUser = req.session.user._id;
+    const userRecipes = await Recipe.find({ owner: currentUser });
+    res.render("cookbook/viewRecipe.ejs", { recipes: userRecipes });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 export default router;
