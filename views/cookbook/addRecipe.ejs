@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Recipe</title>
+  </head>
+  <body>
+    <h1>Add a New Recipe</h1>
+
+    <form action="/myCookBook/add-recipe" method="POST">
+      <!-- Recipe Name -->
+      <label for="name">Recipe Name:</label>
+      <input type="text" id="name" name="name" required />
+      <br /><br />
+
+      <label for="instructions">Instructions:</label>
+      <textarea
+        id="instructions"
+        name="instructions"
+        rows="4"
+        cols="50"
+      ></textarea>
+      <br /><br />
+
+      <!-- Owner field (hidden) -->
+      <input type="hidden" id="owner" name="owner" value="<%= user._id %>" />
+
+      <!-- Submit Button -->
+      <button type="submit">Add Recipe</button>
+    </form>
+
+    <a href="/myCookBook">Back to My Cookbook</a>
+    <!-- Link back to the cookbook -->
+  </body>
+</html>
